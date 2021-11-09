@@ -32,7 +32,7 @@ app.use(cookieParser());
 
 //라우터 설정
 app.use(routes.root, globalRouter);
-// app.use(routes.user, userRouter);
+app.use(routes.user, userRouter);
 // app.use(routes.token, tokenRouter);
 app.use(routes.game, gameRouter);
 
