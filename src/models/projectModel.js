@@ -35,6 +35,4 @@ ProjectSchema.virtual('releases', {
   foreignField: '_id',
 }); */
 
-const Project = mongoose.model('Project', ProjectSchema);
-
-module.exports = { Project };
+module.exports = mongoose.model('project', ProjectSchema);

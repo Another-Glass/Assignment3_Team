@@ -19,6 +19,10 @@ projectRouter.get(routes.projectMyDeatail, auth.checkToken, projectController.ge
 // 내 프로젝트 리스트
 projectRouter.delete(routes.projectMyDeatail, auth.checkToken, projectController.deleteMyProject);
 
+//소켓테스트용
+projectRouter.post('/socket', projectController.saveToBuffer);
+//소켓테스트용
+projectRouter.post('/socket1', projectController.bufferToDB);
 
 
 module.exports = projectRouter;

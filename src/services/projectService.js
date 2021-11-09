@@ -1,4 +1,5 @@
-const { Project } = require('../models/projectModel');
+const logger = require("../utils/logger");
+const projectModel = require("../models/projectModel");
 const mongoose = require('mongoose');
 
 /**
@@ -10,7 +11,7 @@ const mongoose = require('mongoose');
  */
 exports.createProject = async data => {
   try {
-    const project = new Project(data);
+    const project = new projectModel(data);
     const newProject = await project.save();
     return newProject;
   } catch (err) {
@@ -26,7 +27,7 @@ exports.createProject = async data => {
  */
 exports.getProjectList = async authorId => {
   try {
-    const projectList = await Project.find({ authorId });
+    const projectList = await projectModel.find({ authorId });
     return projectList;
   } catch (err) {
     throw err;
@@ -40,7 +41,7 @@ exports.getProjectList = async authorId => {
  */
 exports.getProject = async projectId => {
   try {
-    const project = await Project.findOne({ _id: projectId });
+    const project = await projectModel.findOne({ _id: projectId });
     return project;
   } catch (err) {
     throw err;
@@ -62,16 +63,20 @@ exports.getProject = async projectId => {
  */
 exports.updateProject = async (projectId, projectName, projectData) => {
   try {
-    console.log({ projectId, projectName, projectData });
-    const project = await Project.findOneAndUpdate(
-      { _id: projectId },
-      { projectName, projectData },
-    );
+    let project = await projectModel.findOneAndUpdate({
+      projectId
+    }, {
+      projectData,
+      projectName
+    }, {
+      new: true
+    })
     return project;
   } catch (err) {
     throw err;
   }
 };
+
 
 /**
  * 프로젝트 삭제 서비스
@@ -82,9 +87,6 @@ exports.updateProject = async (projectId, projectName, projectData) => {
 exports.deleteProject = async projectId => {
   try {
     console.log(projectId);
-    const project = await Project.deleteOne({ _id: projectId });
-    return project;
-  } catch (err) {
-    throw err;
-  }
-};
+    const project = await projectModel.deleteOne({ _id: projectId });
+
+
