@@ -1,35 +1,65 @@
-// const { Op } = require("sequelize");
-// const models = require('../models');
+const mongoose = require("mongoose");
+const userModel = require('../models/userModel');
 
-// /**
-//  * 회원가입 서비스
-//  * @param {String} emailUsername
-//  * @param {String} emailDomain
-//  * @param {String} encryptPassword
-//  * @param {String} salt
-//  * @param {Boolean} isAdmin
-//  * @returns {Object} 가입한 유저 정보 { username, domain, password, isAdmin, salt, refreshToken, createdAt, updatedAt }
-//  */
-// exports.signup = async (
-//   emailUsername,
-//   emailDomain,
-//   encryptPassword,
-//   salt,
-//   isAdmin,
-// ) => {
-//   try {
-//     const newUser = await models.user.create({
-//       username: emailUsername,
-//       domain: emailDomain,
-//       password: encryptPassword,
-//       salt,
-//       isAdmin,
-//     });
-//     return newUser;
-//   } catch (err) {
-//     throw err;
-//   }
-// };
+/**
+ * 회원가입 서비스
+ * @param {String} username
+ * @param {String} encryptPassword
+ * @param {String} salt
+ * @param {Boolean} isAdmin
+ * @returns {Object} 가입한 유저 정보 { username, domain, password, isAdmin, salt, refreshToken, createdAt, updatedAt }
+ */
+exports.signup = async (
+  username,
+  encryptPassword,
+  salt,
+) => {
+  try {
+    const newUser = await userModel.create({
+      username: username,
+      password: encryptPassword,
+      salt,
+    });
+    return newUser;
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ * 이메일 체크 서비스
+ * @param {String} username
+ * @returns {Object} 이미 존재하는 유저 정보 { username, domain, password, isAdmin, salt, refreshToken, createdAt, updatedAt }
+ */
+exports.checkUser = async (username) => {
+  try {
+    const alreadyUser = await userModel.findOne({
+      username: username
+    });
+    return alreadyUser;
+  } catch (err) {
+    throw err;
+  }
+};
+
+/**
+ * 로그인 서비스
+ * @param {String} username 
+ * @param {String} password
+ * @returns {Object} 로그인한 유저 정보 { username, domain, password, isAdmin, salt, refreshToken, createdAt, updatedAt }
+ */
+exports.signin = async (username, password) => {
+  try {
+    const user = await userModel.findOne({
+      username: username,
+      password: password,
+    });
+    
+    return user
+  } catch (err) {
+    throw err;
+  }
+};
 
 // /**
 //  * 이메일 체크 서비스
@@ -85,4 +115,3 @@
 // //     throw err;
 // //   }
 // // }
-
