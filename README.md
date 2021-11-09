@@ -184,16 +184,19 @@
 - Postman을 활용하여 API 작동 테스트를 진행했습니다. 
 - __배포된 서버 주소__ 및 자세한 API 명세는 아래에서 확인 가능합니다.
 - [🗂 API Description Link](https://documenter.getpostman.com/view/18068137/UVC2J9gg)
-- [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/4597ce83f6214058476a?action=collection%2Fimport)
-- \[Run in Postman\] 을 클릭하여 웹브라우저 혹은 Postman 클라이언트에 콜렉션이 로드되면
+- [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/4597ce83f6214058476a?action=collection%2Fimport) 을 클릭하여 웹브라우저 혹은 Postman 클라이언트에 콜렉션이 로드되면
    1. Variables 탭에서 서버 Host와 Port를 지정합니다.
    2. Variables 탭에서 테스트하는 동안 사용할 username과 password 그리고 newProjectName을 지정합니다.
    3. 그후 우측 상단의 Run 버튼을 눌러 RUN ORDER 화면에 진입한 뒤 Run \[Collection Name\]을 클릭하면, 이상적인 상황에서의 테스트가 진행됩니다.
+    <img src = "https://user-images.githubusercontent.com/32833404/140971968-5bbe1a9a-5dd4-43a4-80f5-54f36146cabf.jpg">
+       
    4. 좌측의 Workspace 화면에서 해당 콜렉션과 그 요청에는 여러 이상적이지 않은 상황의 테스트에 대한 예시가 있습니다.</br>
-          **\*\*유의사항\*\***
+    <img src ="https://user-images.githubusercontent.com/32833404/140972241-79be0bbf-d147-4a71-981c-d6b797b13901.png">
+
+          **유의사항**
         *일부 요청의 경우 JWT를 필요로합니다. JWT는 로그인 과정에서 "Set-Cookie" 헤더를 통해 클라이언트가 스스로 관리하게끔 전달됩니다.
-        *프로젝트 등록과정에서 콜렉션 Variable의 projectId를 자동으로 수정합니다. 이를 원치 않는다면 해당 요청의 Test Script에서 지워주세요
-- 
+        *프로젝트 등록 과정에서 콜렉션 Variable의 projectId를 자동으로 수정합니다. 이를 원치 않는다면 해당 요청의 Test Script에서 지워주세요
+ 
 
 </br>
 </br>
