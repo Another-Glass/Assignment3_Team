@@ -169,7 +169,6 @@
   PORT=
   JWT_SECERT=
   JWT_ALGO=
-  HOST=
   ```
 
 </details>
@@ -210,7 +209,7 @@
 </br>
 
 <div align=center>
-<img src="https://user-images.githubusercontent.com/59385491/140954041-f43eed69-5bb5-4cac-a7c8-9a1c70afb649.png" height=850>
+<img src="https://user-images.githubusercontent.com/59385491/140967439-c07c3a79-1919-478e-864d-f1a96d9b368a.png" height=850>
 </div>
 
 
