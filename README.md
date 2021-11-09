@@ -47,7 +47,7 @@
 |  <img src="https://avatars.githubusercontent.com/u/59385491?v=4" height=200 width=200> | <img src="https://avatars.githubusercontent.com/u/38933716?v=4" height=200 width=200> |<img src="https://avatars.githubusercontent.com/u/67402180?v=4" height=200 width=200>  |
 | **blog**: [Plus Ultra](https://overcome-the-limits.tistory.com/) </br> **github**: [epitone](https://github.com/epitoneproject)| **blog**: [sudocorp](https://sudocorp.tistory.com/) </br> **github**: [SibaDoge1](https://github.com/SibaDoge1)| **blog**: [raejun92.log](https://velog.io/@raejun92) </br> **github**: [raejun92](https://github.com/raejun92)
 | ![sprint3](https://img.shields.io/badge/wanted-sprint3-orange) |![sprint3](https://img.shields.io/badge/wanted-sprint3-orange)  | ![sprint3](https://img.shields.io/badge/wanted-sprint3-orange) |
-| 실시간 저장 소켓 이벤트 | 실시간 저장 소켓 이벤트 | 퍼블리싱 관련 DB / API |
+| 실시간 저장 소켓 이벤트 | 실시간 저장 소켓 이벤트, DevOps | 퍼블리싱 관련 DB / API |
 | [프로젝트 회고](https://overcome-the-limits.tistory.com/entry/%ED%9A%8C%EA%B3%A0-%EC%9B%90%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EB%B0%B1%EC%97%94%EB%93%9C-%EC%BD%94%EC%8A%A4-3%EC%B0%A8-%EA%B3%BC%EC%A0%9C?category=980007) | [프로젝트 회고]() | [프로젝트 회고]()
 
 <br>
@@ -98,7 +98,7 @@
 </br>
 </br>
 
-## 📕 과제 해결 방안
+## 📕 작업 효율 개선 방안
 
 - Node.js, express, MongoDB, Mongoose, socket.io를 활용해서 CRUD API, 회원가입 로그인 API, 프로젝트 API, 퍼블리싱 API, 실시간 이벤트 처리를 구현했습니다.
 - 인증, 인가를 위해 세션, 쿠키를 활용했습니다.
@@ -107,12 +107,6 @@
 - 계층 분리를 통해 코드의 가독성을 높였습니다.
 - 리팩토링을 통해 가독성을 높이고, 유지보수를 편하게 하기 위해 노력 했습니다.
 
-</br>
-</br>
-
-## 📕 API 설계
-
- - [ API 설계 (notion) ](https://www.notion.so/pre-onboarding15/3-4de10e004e434935a5ff02205046f207)
 
 </br>
 </br>
@@ -125,15 +119,9 @@
 
 <br>
 
-### [게임 제작 API]
-
-- 프로젝트는 socketIO를 이용해 "실시간"으로 이벤트를 관리하고, 작업 중 의도치 않은 사이트 종료 시에도 작업내용이 보존되는 기능을 구현 하였습니다.
-
-<br>
-
 ### [ 조회수 수정, 좋아요 API]
 
-- 프로젝트 당 배포 할수 있는 개수는 하나로 구현하고, 배포한 게임은 수정 가능, 수정 후 재배포시 기존 배포된 프로젝트도 수정 가능하게 기능 구현 하였습니다.
+- 프로젝트 당 배포 할수 있는 개수는 하나로 구현하고, 배포한 게임은 수정 가능, 수정 후 재배포시 기존 배포된 게임도 수정 가능하게 기능 구현 하였습니다.
 
 <br>
 
@@ -147,6 +135,56 @@
 
 - 자바스크립트 자체 내장 Error 클래스를 상속 받아서, 커스텀 에러를 생성해서 관리했습니다.
 
+<br>
+
+### [게임 제작 API]
+
+- 기존의 RestFul Api 설계의 경우, 실시간 저장이라는 개념이 성립할 수 없었습니다. 어쩔 수 없이 게임을 제작하는 사용자부분은 __브라우저__ 를 이용한 가상의 게임제작 페이지를 사용하기로 하였습니다. 
+- socket.io를 이용하여 서버와 클라이언트간의 실시간 연결을 유지하고, 게임 프로젝트 데이터의 변경 시 데이터를 서버에 저장합니다.
+
+<br>
+<br>
+
+## 📕 __실시간 저장 성능을 위한 구현방안__
+- 처음에는 일정 시간 단위로 단순히 데이터를 보내는 것을 생각했지만, 단위가 길어지면 실시간 저장이 힘들고 짧아지면 너무 빈번한 저장으로 성능에 좋지 않다고 생각했습니다.
+- 그렇다고 사용자가 데이터를 변경할 때마다 요청한다면 1초에 수십번의 요청 및 쿼리실행이 될 것이라 생각하여 개선방안을 생각해보았습니다.
+  
+  <img src="https://user-images.githubusercontent.com/38933716/140969497-f238b28d-d89b-49d0-8de7-f0ab8ee909fd.png" width="600" height="400"/>
+
+  <img src="https://user-images.githubusercontent.com/38933716/140969491-e555e2ad-6acd-4e56-a402-fdd1f594c24d.png" width="300" height="400"/>
+
+  ##### 간단한 코드입력에도 수십번의 저장을 시도하는 모습
+
+<br>
+
+- 1차적으로, 서버에 버퍼를 두는 방식을 생각했습니다. 클라이언트가 저장요청을 보내면 서버는 해당 데이터를 버퍼에 임시보관하고, 일정 시간 뒤 버퍼의 최신 데이터를 DB에 저장하도록 했습니다.
+
+  <img src="https://user-images.githubusercontent.com/38933716/140970465-5e865ad2-aff2-4e55-81f2-38bc1c8560b6.png" width="450" height="300"/>
+  
+  ##### 받아온 정보를 버퍼에 저장하는 부분 
+
+  <br>
+
+  <img src="https://user-images.githubusercontent.com/38933716/140970472-d10a34cc-4925-457a-a8aa-e8fb738bfb03.png" width="500" height="350"/>
+  
+  ##### 일정시간 뒤, 정보를 DB에 저장하는 부분
+
+- 이를 통해 어느정도의 성능개선을 기대할 수 있었지만, 클라이언트에서의 많은 요청은 여전히 존재했습니다.
+- 이 문제를 개선하기 위해 클라이언트에서도 저장요청에 CoolTime을 구현하기로 했습니다.
+  
+ <br>
+
+   <img src="https://user-images.githubusercontent.com/38933716/140970462-30f5d8d7-5f7e-4a08-8629-26695366d0e7.png" width="500" height="350"/>
+
+- isCoolTime 변수와 setTimeout을 이용해, 정보를 여러번 변경하더라도 1초 뒤에 하나의 요청만 하도록 변경하였습니다.
+
+</br>
+</br>
+
+   <img src="https://user-images.githubusercontent.com/38933716/140970161-7f5f26cd-3c9d-41ba-b543-2536a8927034.png" width="400" height="400"/>
+
+- 그 결과 이전과 똑같은 방법으로 테스트했을 때, 90번에 달하는 저장 요청이 9번의 버퍼저장과 4번의 DB쿼리 실행으로 줄어들었음에도 실시간 저장이 가능해졌습니다.
+
 </br>
 </br>
 
@@ -157,19 +195,15 @@
 - npm start를 통해 서버를 구동합니다.
 - src 폴더에 .env 파일을 설정해서, 환경변수를 설정합니다.
 - npm start로 서버를 구동시키고, npm test를 입력하면 단위 테스트가 가능합니다.
-- 게임 제작의 경우 로그인 페이지에서 로그인 진행 후에 브라우저에 토큰이 등록된 후 게임제작 페이지에서 테스트 가능합니다.
-  - 로그인 페이지 get http://host/user/token
-  - 게임제작 페이지 get http://{{host}}/projects/my/{{projectId}}?username={{username}}  (쿠키 필요)
+- [.env설정 노션 링크](https://www.notion.so/pre-onboarding15/750e9c9bd84f49bda72146b46a77923a)
+  - <details><summary><b>링크 접속불가 시 .env 파일 설정 방법</b></summary>
 
-
-- <details><summary><b>.env 파일 설정 방법</b></summary>
-
-  ```
-  MONGO_URL=
-  PORT=
-  JWT_SECERT=
-  JWT_ALGO=
-  ```
+    ```
+    MONGO_URL= 'db 주소'
+    PORT= '서버의 포트'
+    JWT_SECERT= '원하는 시크릿코드'
+    JWT_ALGO="HS256"
+    ```
 
 </details>
 
@@ -183,10 +217,23 @@
 - Postman을 활용하여 API 작동 테스트를 진행했습니다. 
 - __배포된 서버 주소__ 및 자세한 API 명세는 아래에서 확인 가능합니다.
 - [🗂 API Description Link](https://documenter.getpostman.com/view/18068137/UVC2J9gg)
+- __게임 제작의 경우__ 다음과 같은 과정으로 __브라우저를 이용__ 하여 확인 가능합니다.
+  1. 테스트 하기 전, api요청을 통해 프로젝트를 생성하고 프로젝트Id를 알고있어야 합니다.
+     -  테스트를 위하여, [.env설정 노션 링크](https://www.notion.so/pre-onboarding15/750e9c9bd84f49bda72146b46a77923a)에 예시용 정보 및 주소를 적어놓았습니다.
+  2.  아래 주소로 접속하여 로그인을 합니다.
+      - 로그인 페이지 http://{{서버 주소}}/user/token
+  
+  3.  아래 주소로 접속하여 게임제작 및 퍼블리시를 테스트합니다.
+       -  게임제작 페이지 http://{{서버 주소}}/projects/my/{{프로젝트Id}}?username={{유저네임}} 
 
 </br>
 </br>
 
+## 📕 과정 중에 사용한 설계문서
+
+ - [ API 설계 (notion) ](https://www.notion.so/pre-onboarding15/3-4de10e004e434935a5ff02205046f207)
+
+<br>
 
 ## 😎 컨벤션 설정
 
@@ -209,7 +256,7 @@
 </br>
 
 <div align=center>
-<img src="https://user-images.githubusercontent.com/59385491/140967439-c07c3a79-1919-478e-864d-f1a96d9b368a.png" height=850>
+<img src="https://user-images.githubusercontent.com/59385491/140954041-f43eed69-5bb5-4cac-a7c8-9a1c70afb649.png" height=850>
 </div>
 
 
@@ -267,12 +314,6 @@
  ┃ ┣ 📜gameService.js
  ┃ ┣ 📜projectService.js
  ┃ ┗ 📜userService.js
- ┣ 📂test
- ┃ ┣ 📂Token
- ┃ ┃ ┗ 📜postToken.test.js
- ┃ ┣ 📂User
- ┃ ┃ ┗ 📜signup.test.js
- ┃ ┗ 📜Socket.test.js
  ┣ 📂utils
  ┃ ┣ 📂db
  ┃ ┃ ┗ 📜index.js
