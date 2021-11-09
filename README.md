@@ -70,8 +70,6 @@
 
 ## 📕 과제 내용
 
-</br>
-
 ### [필수 포함 사항]
 
 - Swagger나 Postman을 이용하여 API 테스트 가능하도록 구현
@@ -102,8 +100,6 @@
 
 ## 📕 과제 해결 방안
 
-</br>
-
 - Node.js, express, MongoDB, Mongoose, socket.io를 활용해서 CRUD API, 회원가입 로그인 API, 프로젝트 API, 퍼블리싱 API, 실시간 이벤트 처리를 구현했습니다.
 - 인증, 인가를 위해 세션, 쿠키를 활용했습니다.
 - 코드 컨벤션, 커밋 컨벤션, Git Flow를 지켜가며 작업했습니다.
@@ -116,16 +112,12 @@
 
 ## 📕 API 설계
 
-</br>
-
  - [ API 설계 (notion) ](https://www.notion.so/pre-onboarding15/3-4de10e004e434935a5ff02205046f207)
 
 </br>
 </br>
 
 ## 💡 구현 기능
-
-</br>
 
 ### [회원가입, 로그인]
 
