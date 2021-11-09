@@ -73,7 +73,7 @@ exports.getMyProjectDetail = async (req, res, next) => {
         if (username === undefined || username != verified) {
             throw new ValidationError();
         }
-        if (isNaN(parseInt("0x"+projectId))) {
+        if (isNaN("0x"+projectId)) {
             throw new ValidationError();
         }
 
@@ -108,7 +108,7 @@ exports.deleteMyProject = async (req, res, next) => {
         if (username === undefined || username != verified) {
             throw new ValidationError();
         }
-        if (isNaN(parseInt("0x"+projectId))) {
+        if (isNaN("0x"+projectId)) {
             throw new ValidationError();
         }
 
