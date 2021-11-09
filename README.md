@@ -227,7 +227,7 @@
    4. 좌측의 Workspace 화면에서 해당 콜렉션과 그 요청에는 여러 이상적이지 않은 상황의 테스트에 대한 예시가 있습니다.</br>
     <img src ="https://user-images.githubusercontent.com/32833404/140972241-79be0bbf-d147-4a71-981c-d6b797b13901.png">
 
-          **유의사항**
+        **유의사항**
         *일부 요청의 경우 JWT를 필요로합니다. JWT는 로그인 과정에서 "Set-Cookie" 헤더를 통해 클라이언트가 스스로 관리하게끔 전달됩니다.
         *프로젝트 등록 과정에서 콜렉션 Variable의 projectId를 자동으로 수정합니다. 이를 원치 않는다면 해당 요청의 Test Script에서 지워주세요
  
