@@ -24,8 +24,13 @@ exports.createProject = async (req, res, next) => {
         }
 
         // TODO projectService를 이용하여 새로 생성 및 responseData에 삽입
+        const dbResolve = await createProject({
+            authorId: req.decoded._id,
+            projectName: projectName,
+            projectData: "",
+        })
         const responseData = {
-            projectId: null
+            projectId: dbResolve._id
         }
 
         return res
@@ -47,17 +52,15 @@ exports.getMyProjectList = async (req, res, next) => {
         }
 
         // TODO projectService를 이용하여 새로 생성 및 responseData에 삽입
-        const responseData = [
-            {
-                projectId: null,
-                projectName: null,
-                projectData: null,
-                release: {
-                    isReleased: null,
-                    releaseId: null
-                }
+        const responseData = [{
+            projectId: null,
+            projectName: null,
+            projectData: null,
+            release: {
+                isReleased: null,
+                releaseId: null
             }
-        ]
+        }]
 
         return res
             .status(statusCode.OK)
@@ -71,19 +74,20 @@ exports.getMyProjectDetail = async (req, res, next) => {
     try {
         const { projectId } = req.params
         const { username } = req.query
-        const { verified } = req.decoded
+        const verified = req.decoded.username;
+
 
         if (username === undefined || username != verified) {
             throw new ValidationError();
         }
 
-        if (isNaN(projectId)) {
+        if (projectId === undefined) {
             throw new ValidationError();
         }
 
         // TODO projectService를 이용하여 렌더링에 포함할 정보 입력
         const responseData = {
-            projectId: null,
+            projectId: projectId,
             projectName: null,
             projectData: null,
         }
@@ -130,23 +134,22 @@ exports.deleteMyProject = async (req, res, next) => {
 //프로젝트 정보를 임시로 버퍼에 저장
 exports.saveToBuffer = async (data) => {
     try {
-        logger.log('saveToBuffer data received \n' + JSON.stringify(data));
-        if (data == undefined || data.projectName == undefined || data.projectData == undefined || data.projectId == undefined) {
+        //입력값 이상 확인
+        if (data === undefined || data.projectName === undefined || 
+            data.projectData === undefined || data.projectId === undefined) {
             throw new ValidationError();
         }
 
-        saveDataBuffer.set(data.projectId, {
-            content: data.content,
-            title: data.title
-        });
+        //버퍼에 입력
+        saveDataBuffer.set(data.projectId, data);
 
+        //일정 시간 뒤 저장함수 실행
         if (!saveTimerBuffer.get(data.projectId)) {
             let timer = setTimeout(this.bufferToDB, 5000, {
                 projectId: data.projectId
             });
             saveTimerBuffer.set(data.projectId, timer);
         }
-        logger.log('saveToBuffer compelte');
     } catch (err) {
         throw err;
     }
@@ -156,30 +159,34 @@ exports.saveToBuffer = async (data) => {
 //버퍼혹은 받아온 데이터를 DB에 저장
 exports.bufferToDB = async (data) => {
     try {
-        logger.log('bufferToDB data received \n' + JSON.stringify(data));
         let lastestData = {};
 
-        if (data == undefined || data.projectId == undefined) {
+        //입력값 이상 확인
+        if (data === undefined || data.projectId === undefined) {
             throw new ValidationError();
         }
 
-        if (data.projectName == undefined || data.projectData == undefined) {
+        //console.log(saveDataBuffer.get(data.projectId));
+        //버퍼와 받아온 데이터 중 넣을 데이터 선택
+        if (data.projectName === undefined || data.projectData === undefined) {
             lastestData = saveDataBuffer.get(data.projectId);
         } else {
             lastestData = data;
         }
 
-        //let proeject = await updateProject(lastestData.projectId, lastestData.projectName, lastestData.projectData);
-        let project = {
-            projectId: "테스트성공"
-        };
-        if (!project) {
-            //throw new EntityNotExistError();
-        } else {
+        //쿼리 실행
+        let project = await updateProject(lastestData.projectId, lastestData.projectName, lastestData.projectData);
+
+        //db에 없을 시
+        if (project === undefined) {
+            throw new EntityNotExistError();
+        }
+        //정상 결과 시
+        else {
             saveDataBuffer.delete(data.projectId);
             saveTimerBuffer.delete(data.projectId);
         }
-        logger.log('bufferToDB completed \n' + project.projectId);
+
     } catch (err) {
         throw err;
     }
