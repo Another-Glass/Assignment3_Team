@@ -7,16 +7,10 @@ const ROOT = '/';
 const USER_SIGNUP = '/user';
 const USER_SIGNIN = '/token';
 
-//Project
-const PROJECT_MY = '/project/my'
-const PROJECT_MY_DETAIL ='/:projectId'
-
 const routes = {
   root: ROOT,
   user: USER_SIGNUP,
-  token: USER_SIGNIN,
-  project : PROJECT_MY,
-  projectMyDeatail : PROJECT_MY_DETAIL,
+  token: USER_SIGNIN
 }
 
 module.exports = routes;

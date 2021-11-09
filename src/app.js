@@ -10,7 +10,6 @@ const { statusCode, routes, responseMessage } = require('./globals');
 const globalRouter = require('./routes/globalRouter');
 const userRouter = require('./routes/userRouter');
 const tokenRouter = require('./routes/tokenRouter');
-const projectRouter = require('./routes/projectRouter');
 const { NoPageError } = require('./utils/errors/commonError');
 
 const connectDB = require('../src/utils/db');
@@ -34,7 +33,6 @@ app.use(cookieParser());
 app.use(routes.root, globalRouter);
 app.use(routes.user, userRouter);
 // app.use(routes.token, tokenRouter);
-app.use(routes.project,projectRouter);
 
 // 아래는 에러 핸들링 함수들
 app.use(function (req, res, next) {
