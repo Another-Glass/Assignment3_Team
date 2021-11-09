@@ -16,7 +16,7 @@ const ProjectSchema = new mongoose.Schema(
     },
     releaseId: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
     },
   },

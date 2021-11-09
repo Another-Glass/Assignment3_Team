@@ -1,13 +1,27 @@
-const { statusCode, responseMessage } = require('../globals');
+const {
+    statusCode,
+    responseMessage
+} = require('../globals');
 const encryption = require('../libs/encryption.js');
 const jwt = require('../libs/jwt.js');
-const { resFormatter } = require('../utils');
-const { ValidationError, DuplicatedError, PasswordMissMatchError, NotMatchedUserError } = require('../utils/errors/userError');
-const { EntityNotExistError } = require('../utils/errors/commonError');
+const {
+    resFormatter
+} = require('../utils');
+const {
+    ValidationError,
+    DuplicatedError,
+    PasswordMissMatchError,
+    NotMatchedUserError
+} = require('../utils/errors/userError');
+const {
+    EntityNotExistError
+} = require('../utils/errors/commonError');
 
 const userService = require('../services/userService.js');
 const logger = require('../utils/logger');
-const { updateProject } = require('../services/projectService');
+const {
+    updateProject
+} = require('../services/projectService');
 
 const saveDataBuffer = new Map();
 const saveTimerBuffer = new Map();
@@ -15,7 +29,10 @@ const saveTimerBuffer = new Map();
 
 exports.createProject = async (req, res, next) => {
     try {
-        const { email, projectName } = req.body
+        const {
+            email,
+            projectName
+        } = req.body
         const username = req.decoded.username
 
         //email, projectName이 누락되었거나 email과 jwt의 mismatch
@@ -42,16 +59,15 @@ exports.getMyProjectList = async (req, res, next) => {
         const noParameter = req.body
 
         // TODO projectService를 이용하여 새로 생성 및 responseData에 삽입
-        const responseData = [
-            {
-                projectId: null,
-                projectName: null,
-                projectData: null,
-                release: {
-                    isReleased: null,
-                    releaseId: null
-                }
+        const responseData = [{
+            projectId: null,
+            projectName: null,
+            projectData: null,
+            release: {
+                isReleased: null,
+                releaseId: null
             }
+        }
 
         ]
 
@@ -65,7 +81,9 @@ exports.getMyProjectList = async (req, res, next) => {
 
 exports.getMyProjectDetail = async (req, res, next) => {
     try {
-        const { projectId } = req.params
+        const {
+            projectId
+        } = req.params
         const username = req.decoded.username
 
         if (isNaN(projectId)) {
@@ -80,7 +98,7 @@ exports.getMyProjectDetail = async (req, res, next) => {
         }
 
         // CHECK TODO 다른 추가적인 메세지는 html에서 처리?
-        res.status(statusCode.OK).render(FILE_PATH, responseData)
+        res.status(statusCode.OK).render("gameEditor.html", responseData)
 
     } catch (err) {
         next(err)
@@ -90,7 +108,9 @@ exports.getMyProjectDetail = async (req, res, next) => {
 
 exports.deleteMyProject = async (req, res, next) => {
     try {
-        const { projectId } = req.params
+        const {
+            projectId
+        } = req.params
         const username = req.decoded.username
         if (isNaN(projectId)) {
             throw new ValidationError();
@@ -113,23 +133,26 @@ exports.deleteMyProject = async (req, res, next) => {
 
 
 //프로젝트 정보를 임시로 버퍼에 저장
-exports.saveToBuffer = async (req, res, next) => {
+exports.saveToBuffer = async (data) => {
     try {
-        data = req.body;
         logger.log('saveToBuffer data received \n' + JSON.stringify(data));
-        if (data == undefined || data.content == undefined || data.title == undefined || data.projectId == undefined) {
+        if (data == undefined || data.projectName == undefined || data.projectData == undefined || data.projectId == undefined) {
             throw new ValidationError();
         }
 
-        saveDataBuffer.set(data.projectId, { content: data.content, title: data.title });
+        saveDataBuffer.set(data.projectId, {
+            content: data.content,
+            title: data.title
+        });
 
         if (!saveTimerBuffer.get(data.projectId)) {
-            let timer = setTimeout(this.bufferToDB, 5000, { projectId: data.projectId });
+            let timer = setTimeout(this.bufferToDB, 5000, {
+                projectId: data.projectId
+            });
             saveTimerBuffer.set(data.projectId, timer);
         }
         logger.log('saveToBuffer compelte');
     } catch (err) {
-        logger.err(err);
         throw err;
     }
 }
@@ -145,27 +168,24 @@ exports.bufferToDB = async (data) => {
             throw new ValidationError();
         }
 
-        if (data.content == undefined || data.title == undefined) {
+        if (data.projectName == undefined || data.projectData == undefined) {
             lastestData = saveDataBuffer.get(data.projectId);
-        }
-        else {
+        } else {
             lastestData = data;
         }
 
-
-        //let proeject = await updateProject(lastestData);
-        let project = { projectId: "테스트성공" };
+        //let proeject = await updateProject(lastestData.projectId, lastestData.projectName, lastestData.projectData);
+        let project = {
+            projectId: "테스트성공"
+        };
         if (!project) {
             //throw new EntityNotExistError();
-        }
-        else {
+        } else {
             saveDataBuffer.delete(data.projectId);
             saveTimerBuffer.delete(data.projectId);
         }
         logger.log('bufferToDB completed \n' + project.projectId);
-
     } catch (err) {
-        logger.err(err);
         throw err;
     }
 }

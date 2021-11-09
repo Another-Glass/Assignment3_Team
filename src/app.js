@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const createError = require('http-errors');
@@ -20,6 +21,12 @@ connectDB();
 
 //서버 사전작업
 const app = express();
+
+//뷰 엔진 및 에셋 위치 설정
+app.set('views', path.join(__dirname, 'public'));
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(path.join(__dirname, 'public')));
 
 //미들웨어 설정
 app.use(helmet({

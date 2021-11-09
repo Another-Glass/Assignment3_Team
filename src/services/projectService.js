@@ -2,13 +2,13 @@ const logger = require("../utils/logger");
 
 const projectModel = require("../models/projectModel");
 
-module.exports.updateProject = async (data) => {
+module.exports.updateProject = async (projectId, projectName, projectData) => {
   try {
     let project = await projectModel.findOneAndUpdate({
-      projectId: data.projectId
+      projectId
     }, {
-      projectData: data.content,
-      projectName: data.title
+      projectData,
+      projectName
     }, {
       new: true
     })

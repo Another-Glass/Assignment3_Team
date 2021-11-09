@@ -1,14 +1,15 @@
 const projectContoller = require("../controllers/projectController");
+const logger = require("../utils/logger");
 
 function attachEvent(io) {
   io.on('connection', (socket) => {
-    io.emit('news', { serverData: "서버 연결 성공" });
+    socket.emit('news', { message: "서버 연결 성공" });
     logger.log("socket connected" + socket.id);
 
     socket.on('OnCodeChanged', (data) => {
       projectContoller.saveToBuffer(data);
     })
-    socket.on('Quit', (data) => {
+    socket.on('ForceSave', (data) => {
       projectContoller.bufferToDB(data);
     })
 

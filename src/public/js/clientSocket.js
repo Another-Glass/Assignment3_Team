@@ -1,5 +1,5 @@
 // socket.io 서버에 접속한다
-const socket = io('/game');
+var socket = io();
 
 const titleForm = document.querySelector('#titleForm');
 const contentForm = document.querySelector('#contentForm');
@@ -23,33 +23,56 @@ const startGameButton = document.querySelector('#startGame');
   - 서버 on 클리이언트 emit
   - projectId, title, content를 서버에게 전달.    
 */
-let projectId, title, content;
 
 // 1. join 이벤트를 받아 game정보 출력
-socket.on('join', (userData) => {
-  projectId = userData.projectId;
-  title = userData.title;
-  content = userData.content;
+socket.on('join', (data) => {
+  console.log(data);
 })
 
-// 2. 게임 저장 버튼 클릭 시 OnCodeChanged 이벤트 emit
-function gameSaveButtonClick(){
+// 2. 텍스트 박스 값 변경 시 OnCodeChanged 이벤트 emit
+function OnCodeChanged() {
   const data = {
-    projectId: projectId,
-    title: titleForm.value,
-    content: contentForm.value
+    projectId: projectId.value,
+    projectName: titleForm.value,
+    projectData: contentForm.value
   }
   socket.emit("OnCodeChanged", data);
 }
 
-// 3. 게임 실행 버튼 클릭 시 Quit 이벤트 emit
-function gameStartButtonClick(){
+// 3. 게임 퍼블리시 버튼 클릭 시 Quit 이벤트 emit
+function gamePublishButtonClick() {
   const data = {
     projectId: projectId,
-    title: titleForm.value,
-    content: contentForm.value
+    projectName: titleForm.value,
+    projectData: contentForm.value
   }
-  socket.emit("Quit", data);
+
+  socket.emit("ForceSave", data);
+
+  const token = document.cookie
+  console.log(document)
+  // 퍼블리시 하는 API Post로 연결
+  const url = 'http//localhost:3000/games'
+  // const options = {
+  //   method: "POST",
+  //   headers: {
+
+  //   },
+  //   body: JSON.stringify(data)
+  // }
+  // fetch(url, options)
 }
 
+let username = getQueryStrings().username;
 
+function getQueryStrings() {
+  let params = {};
+
+  window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+    function (str, key, value) {
+      params[key] = value;
+    }
+  );
+
+  return params;
+}
