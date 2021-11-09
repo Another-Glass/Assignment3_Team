@@ -10,13 +10,18 @@ const projectRouter = express.Router();
 projectRouter.post(routes.root, projectController.createProject);
 
 // 내 프로젝트 리스트
-projectRouter.get(routes.root,projectController.getMyProjectList);
+projectRouter.get(routes.root, projectController.getMyProjectList);
 
 // 내 프로젝트 리스트
-projectRouter.get(routes.projectMyDeatail,projectController.getMyProjectDetail);
+projectRouter.get(routes.projectMyDeatail, projectController.getMyProjectDetail);
 
 // 내 프로젝트 리스트
-projectRouter.delete(routes.projectMyDeatail,projectController.deleteMyProject);
+projectRouter.delete(routes.projectMyDeatail, projectController.deleteMyProject);
+
+//소켓테스트용
+projectRouter.post('/socket', projectController.saveToBuffer);
+//소켓테스트용
+projectRouter.post('/socket1', projectController.bufferToDB);
 
 
 

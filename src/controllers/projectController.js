@@ -3,9 +3,14 @@ const encryption = require('../libs/encryption.js');
 const jwt = require('../libs/jwt.js');
 const { resFormatter } = require('../utils');
 const { ValidationError, DuplicatedError, PasswordMissMatchError, NotMatchedUserError } = require('../utils/errors/userError');
+const { EntityNotExistError } = require('../utils/errors/commonError');
 
 const userService = require('../services/userService.js');
 const logger = require('../utils/logger');
+const { updateProject } = require('../services/projectService');
+
+const saveDataBuffer = new Map();
+const saveTimerBuffer = new Map();
 
 
 exports.createProject = async (req, res, next) => {
@@ -104,6 +109,65 @@ exports.deleteMyProject = async (req, res, next) => {
         next(err)
     }
 
+}
+
+
+//프로젝트 정보를 임시로 버퍼에 저장
+exports.saveToBuffer = async (req, res, next) => {
+    try {
+        data = req.body;
+        logger.log('saveToBuffer data received \n' + JSON.stringify(data));
+        if (data == undefined || data.content == undefined || data.title == undefined || data.projectId == undefined) {
+            throw new ValidationError();
+        }
+
+        saveDataBuffer.set(data.projectId, { content: data.content, title: data.title });
+
+        if (!saveTimerBuffer.get(data.projectId)) {
+            let timer = setTimeout(this.bufferToDB, 5000, { projectId: data.projectId });
+            saveTimerBuffer.set(data.projectId, timer);
+        }
+        logger.log('saveToBuffer compelte');
+    } catch (err) {
+        logger.err(err);
+        throw err;
+    }
+}
+
+
+//버퍼혹은 받아온 데이터를 DB에 저장
+exports.bufferToDB = async (data) => {
+    try {
+        logger.log('bufferToDB data received \n' + JSON.stringify(data));
+        let lastestData = {};
+
+        if (data == undefined || data.projectId == undefined) {
+            throw new ValidationError();
+        }
+
+        if (data.content == undefined || data.title == undefined) {
+            lastestData = saveDataBuffer.get(data.projectId);
+        }
+        else {
+            lastestData = data;
+        }
+
+
+        //let proeject = await updateProject(lastestData);
+        let project = { projectId: "테스트성공" };
+        if (!project) {
+            //throw new EntityNotExistError();
+        }
+        else {
+            saveDataBuffer.delete(data.projectId);
+            saveTimerBuffer.delete(data.projectId);
+        }
+        logger.log('bufferToDB completed \n' + project.projectId);
+
+    } catch (err) {
+        logger.err(err);
+        throw err;
+    }
 }
 
 

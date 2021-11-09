@@ -23,7 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
     "morgan": "~1.9.1",
-    "pm2": "^5.1.2"
+    "pm2": "^5.1.2",
+    "socket.io": "^4.3.2"
   },
   "devDependencies": {
     "eslint": "^8.0.1",
