@@ -11,10 +11,16 @@ module.exports = {
     sign: async user => {
         const payload = {
             username : user.username,
+            _id : user._id
         };
 
+        const token = jsonwebtoken.sign(payload, secretKey.secretKey, secretKey.options)
+        const decrypt =  jsonwebtoken.verify(token, secretKey.secretKey)
+        
+
         const result = {
-            accessToken: jsonwebtoken.sign(payload, secretKey.secretKey, secretKey.options),
+            accessToken: token,
+            expires: decrypt.exp,
             //refreshToken: jsonwebtoken.sign(payload, secretKey.secretKey, secretKey.refreshOpti ons)
         };
 

@@ -19,4 +19,4 @@ const UserSchema = new mongoose.Schema({
   },
 }, { versionKey: false });
 
-module.exports=mongoose.model("Assign3User", UserSchema);
+module.exports=mongoose.model("Assign03User", UserSchema);

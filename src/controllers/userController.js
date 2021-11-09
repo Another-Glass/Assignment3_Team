@@ -49,11 +49,11 @@ exports.postToken = async (req, res, next) => {
      //회원가입 여부 확인
      const isEmail = await userService.checkUser(username);
      if (!isEmail) throw new NotMatchedUserError();
-     console.log(isEmail)
+    
     //확인용 암호화
     const { salt, password: realPassword } = isEmail;
     const inputPassword = encryption.encrypt(password, salt);   
-    console.log(inputPassword)
+    
     //패스워드 불일치
     if (inputPassword !== realPassword) throw new PasswordMissMatchError();
 
@@ -61,13 +61,14 @@ exports.postToken = async (req, res, next) => {
     const user = await userService.signin(username, inputPassword);
 
     //토큰 반환
-    //const { accessToken } = await jwt.sign(user);
-    console.log(user)
+    
+    
     const jwtResult = await jwt.sign(user)
 
     const cookieOption = {
         domain : req.hostname,
-        expires : undefined,
+        // second to milisecond
+        expires : new Date(jwtResult.expires * 1000),
     }
 
     
