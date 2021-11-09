@@ -1,6 +1,6 @@
 <div align="center">
 
-  # 원티드 백엔드 프리온보딩 2차 과제 - 프레시코드
+  # 원티드 백엔드 프리온보딩 3차 과제 - 레드브릭
 
   <img height="400" width="700" src="https://user-images.githubusercontent.com/59385491/139865333-05dabf0a-e283-4e51-94d9-8a42e6acbb7b.jpeg">
 
@@ -31,9 +31,9 @@
 
 ## 🎤 소개
 
-이 레포지토리는 [원티드 프리온보딩 백엔드 코스](https://www.wanted.co.kr/events/pre_onboarding_course_4) 2차 과제를 위해 만들어졌습니다. 
+이 레포지토리는 [원티드 프리온보딩 백엔드 코스](https://www.wanted.co.kr/events/pre_onboarding_course_4) 3차 과제를 위해 만들어졌습니다. 
 
--   일정 : 2021년 11월 4일(목) 오후 6시 ~ 11월 6일(토) 오전 10시
+-   일정 : 2021년 11월 8일(월) 오후 6시 ~ 11월 10일(수) 오전 10시
 
 <br>
 <br>
@@ -46,9 +46,9 @@
 |:-----:|:-----:|:-----: |
 |  <img src="https://avatars.githubusercontent.com/u/59385491?v=4" height=200 width=200> | <img src="https://avatars.githubusercontent.com/u/38933716?v=4" height=200 width=200> |<img src="https://avatars.githubusercontent.com/u/67402180?v=4" height=200 width=200>  |
 | **blog**: [Plus Ultra](https://overcome-the-limits.tistory.com/) </br> **github**: [epitone](https://github.com/epitoneproject)| **blog**: [sudocorp](https://sudocorp.tistory.com/) </br> **github**: [SibaDoge1](https://github.com/SibaDoge1)| **blog**: [raejun92.log](https://velog.io/@raejun92) </br> **github**: [raejun92](https://github.com/raejun92)
-| ![sprint2](https://img.shields.io/badge/wanted-sprint2-orange) |![sprint2](https://img.shields.io/badge/wanted-sprint2-orange)  | ![sprint2](https://img.shields.io/badge/wanted-sprint2-orange) |
-| 단위 테스트 | DevOps, API, DB | API |
-| [프로젝트 회고](https://overcome-the-limits.tistory.com/entry/%ED%9A%8C%EA%B3%A0-%EC%9B%90%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EB%B0%B1%EC%97%94%EB%93%9C-%EC%BD%94%EC%8A%A4-2%EC%B0%A8-%EA%B3%BC%EC%A0%9C) | [프로젝트 회고](https://sudocorp.tistory.com/3) | [프로젝트 회고](https://velog.io/@raejun92/Assignment2-%ED%94%84%EB%A0%88%EC%8B%9C%EC%BD%94%EB%93%9C)
+| ![sprint3](https://img.shields.io/badge/wanted-sprint3-orange) |![sprint3](https://img.shields.io/badge/wanted-sprint3-orange)  | ![sprint3](https://img.shields.io/badge/wanted-sprint3-orange) |
+| 실시간 저장 소켓 이벤트 | 실시간 저장 소켓 이벤트 | 퍼블리싱 관련 DB / API |
+| [프로젝트 회고](https://overcome-the-limits.tistory.com/entry/%ED%9A%8C%EA%B3%A0-%EC%9B%90%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EB%B0%B1%EC%97%94%EB%93%9C-%EC%BD%94%EC%8A%A4-3%EC%B0%A8-%EA%B3%BC%EC%A0%9C?category=980007) | [프로젝트 회고]() | [프로젝트 회고]()
 
 <br>
 <br>
@@ -57,9 +57,9 @@
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/32833404?v=4" height=200 width=200> | <img src="https://avatars.githubusercontent.com/u/48472537?v=4" height=200 width=200> | <img src="https://avatars.githubusercontent.com/u/68373235?v=4" height=200 width=200> |
 | **blog**: [Makkiato](https://makkiato.tistory.com) </br> **github**: [Makkiato](https://github.com/Makkiato) | **blog**: [gusrlf14](https://velog.io/@gusrlf14) </br> **github**: [hyunghilkim](https://github.com/hyunghilkim) | **blog**: [dongjay00.log](https://velog.io/@dongjay00) </br> **github**: [dongjay00](https://github.com/dongjay00) |
-| ![sprint2](https://img.shields.io/badge/wanted-sprint2-orange) | ![sprint2](https://img.shields.io/badge/wanted-sprint2-orange) | ![sprint2](https://img.shields.io/badge/wanted-sprint2-orange) |
-|                     통합 테스트                     |                             API                              |                              DB                              |
-|                      [프로젝트 회고](https://makkiato.tistory.com/3)                       |                      [프로젝트 회고](https://velog.io/@gusrlf14/%EC%9B%90%ED%8B%B0%EB%93%9C-%EC%9C%84%EC%BD%94%EB%93%9C-%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EB%B0%B1%EC%97%94%EB%93%9C-2%ED%9A%8C%EC%B0%A8-%EA%B3%BC%EC%A0%9C-%ED%9A%8C%EA%B3%A0)                       | [프로젝트 회고](https://velog.io/@dongjay00/%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9-%EB%91%90%EB%B2%88%EC%A7%B8-%EA%B3%BC%EC%A0%9C-%ED%9A%8C%EA%B3%A0) |
+| ![sprint3](https://img.shields.io/badge/wanted-sprint3-orange) | ![sprint3](https://img.shields.io/badge/wanted-sprint3-orange) | ![sprint2](https://img.shields.io/badge/wanted-sprint3-orange) |
+|                     프로젝트 관련 DB / API                     |                             프로젝트 관련 DB                              |                              퍼블리싱 관련 DB / API                              |
+|                      [프로젝트 회고]()                       |                      [프로젝트 회고]()                       | [프로젝트 회고]() |
 
 
 </div>
@@ -69,6 +69,8 @@
 <br>
 
 ## 📕 과제 내용
+
+</br>
 
 ### [필수 포함 사항]
 
@@ -85,58 +87,67 @@
 
 ### [개발 요구사항]
 
-- Database RDBMS
-- JWT 인증방식 사용
-- 서비스 실행 시 데이터베이스 또는 In Memory 상에 유저와 상품 최소한 5개를 미리 생성
-- Request시 Header에 Authorization 키를 체크
-- Authorization 키의 값이 없거나 인증 실패시 적절한 Error Handling
-- 상품 추가/수정/삭제는 admin 권한을 가진 사용자만 이용 가능
-- 상품 조회는 하나 또는 전체목록을 조회할 수 있으며, 전체목록은 페이징 기능 존재
-- 한 페이지 당 아이템 수 5개
-- 사용자는 상품 조회만 가능
-- 관리자만 상품 추가/수정/삭제
-- 상품 관리 API 개발시 적절한 Error Handling
-- 유닛 테스트 구현
+- 회원가입
+- 게임 제작하기 
+  - 제작 중 단계의 게임을 '프로젝트'
+  - 프로젝트는 "실시간"으로 반영
+- 게임 출시하기
+  - 프로젝트 당 퍼블리싱 할 수 있는 개수는 하나입니다. 퍼블리싱한 게임은 수정할 수 있어야 하며, 수정 후 재출시시 기존에 퍼블리싱된 게임도 수정
+  - 출시하는 게임은 다른 사용자들도 볼 수 있으며, 사용자들의 조회수 / 좋아요 등을 기록 가능
+  - 게임 혹은 사용자 검색'을 통해서 찾기 가능
+
 
 </br>
 </br>
 
 ## 📕 과제 해결 방안
 
-- Node.js, express, MySQL, sequelize를 활용해서 CRUD API, 회원가입 로그인 API, 상품 CRUD를 구현했습니다.
-- 인증, 인가를 위해 JWT를 활용했습니다.
+</br>
+
+- Node.js, express, MongoDB, Mongoose, socket.io를 활용해서 CRUD API, 회원가입 로그인 API, 프로젝트 API, 퍼블리싱 API, 실시간 이벤트 처리를 구현했습니다.
+- 인증, 인가를 위해 세션, 쿠키를 활용했습니다.
 - 코드 컨벤션, 커밋 컨벤션, Git Flow를 지켜가며 작업했습니다.
 - Github Project, 마일스톤을 활용해서 백로그, 이슈 관리를 진행했습니다.
 - 계층 분리를 통해 코드의 가독성을 높였습니다.
 - 리팩토링을 통해 가독성을 높이고, 유지보수를 편하게 하기 위해 노력 했습니다.
-- 유닛테스트와 통합테스트를 개발하여 개발자가 의도한대로 로직이 동작하는지 명확하게 알 수 있고 로직에 대해 보증하기 위해 노력했습니다.
+
+</br>
+</br>
+
+## 📕 API 설계
+
+</br>
+
+ - [ API 설계 (notion) ](https://www.notion.so/pre-onboarding15/3-4de10e004e434935a5ff02205046f207)
 
 </br>
 </br>
 
 ## 💡 구현 기능
 
+</br>
+
 ### [회원가입, 로그인]
 
-- 회원가입시 password 같은 민감정보는 단방향 해쉬 알고리즘인 `crypto`를 이용해서 암호화 하여 database에 저장하였습니다.
-- 로그인이 성공적으로 완료되면, user정보를 토큰으로 반환할때, 양방향 해쉬 알고리즘인 `JWT`를 사용해서 응답을 하였습니다.
+- 인증방식은 JWT를 쿠키에 저장하는 방식으로 구현 하였습니다.
 
 <br>
 
-### [상품 CRUD]
+### [게임 제작 API]
 
-- 관리자와 사용자를 구분하여, 일반 사용자는 상품 조회만 가능하게 제한하고, 관리자는 상품 추가, 수정, 삭제 권한을 주어 구현 하였습니다.
-- 상품(Menu) 조회시, items , tags를 함께 조회가 가능하게 구현 하였습니다.
-- 상품 페이지를 불러올때 1page당 limit5로 하여 페이징를 구현 하였습니다. 
-- 클라이언트 요청시 정보 누락 및 부족으로 인한 에러 처리, 인증관련 에러처리를 구현 하였습니다.
+- 프로젝트는 socketIO를 이용해 "실시간"으로 이벤트를 관리하고, 작업 중 의도치 않은 사이트 종료 시에도 작업내용이 보존되는 기능을 구현 하였습니다.
 
 <br>
 
-### [ 단위테스트 / 통합테스트 ]
+### [ 조회수 수정, 좋아요 API]
 
-- jest를 활용해서 단위 테스트를 구현했습니다. 
-- faker.js 라이브러리를 활용해서 seed data를 생성했습니다.
-- 통합 테스트를 구현해서 실제 사용자와 관리자가 보일만한 패턴을 시나리오로 작성해서 활용하고자 노력했습니다.
+- 프로젝트 당 배포 할수 있는 개수는 하나로 구현하고, 배포한 게임은 수정 가능, 수정 후 재배포시 기존 배포된 프로젝트도 수정 가능하게 기능 구현 하였습니다.
+
+<br>
+
+### [ 게임 혹은 사용자로 검색 API]
+
+- 게임(프로젝트명) 또는 사용자를 키워드로 하여 검색이 가능하게 기능 구현 하였습니다.
 
 <br>
 
@@ -147,17 +158,6 @@
 </br>
 </br>
 
-## ➿ 모델링
-
-</br>
-
-<div align=center>
-<img src="https://user-images.githubusercontent.com/48472537/140530312-82780cf3-3cc6-4ded-98d1-529b0944ed0b.png" height=650>
-</div>
-
-
-</br>
-</br>
 
 ## 🛠 실행 방법
 
@@ -169,16 +169,10 @@
 - <details><summary><b>.env 파일 설정 방법</b></summary>
 
   ```
-  RDS_DATABASE=
-  RDS_USERNAME=
-  RDS_PASSWORD=
-  RDS_HOSTNAME=
-  RDS_PORT=
+  MONGO_URL=
   PORT=
   JWT_SECERT=
   JWT_ALGO=
-  ADMIN_USER=
-  ADMIN_PASSWORD=
   HOST=
   ```
 
@@ -205,7 +199,6 @@
 
 - [👏🏻 Prettier, ESLint, Airbnb Style Guide로 코드 컨벤션  설정하기](https://overcome-the-limits.tistory.com/entry/%ED%98%91%EC%97%85-ESLint-Prettier-Airbnb-Style-Guide%EB%A1%9C-%EC%BD%94%EB%93%9C-%EC%BB%A8%EB%B2%A4%EC%85%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0?category=911197)
 
-
 - [👏🏻 협업을 위한 git 커밋 컨벤션 설정하기](https://overcome-the-limits.tistory.com/entry/%ED%98%91%EC%97%85-%ED%98%91%EC%97%85%EC%9D%84-%EC%9C%84%ED%95%9C-%EA%B8%B0%EB%B3%B8%EC%A0%81%EC%9D%B8-git-%EC%BB%A4%EB%B0%8B%EC%BB%A8%EB%B2%A4%EC%85%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0?category=911197)
 
 - [👏🏻 협업을 위한 Git Flow 설정하기](https://overcome-the-limits.tistory.com/entry/%ED%98%91%EC%97%85-%ED%98%91%EC%97%85%EC%9D%84-%EC%9C%84%ED%95%9C-Git-Flow-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0?category=911197)
@@ -221,7 +214,7 @@
 </br>
 
 <div align=center>
-<img src="https://user-images.githubusercontent.com/59385491/140558426-f0c6b7bc-06c0-4f7f-8944-a5b5540dbbc4.png" height=850>
+<img src="https://user-images.githubusercontent.com/59385491/140954041-f43eed69-5bb5-4cac-a7c8-9a1c70afb649.png" height=850>
 </div>
 
 
@@ -244,9 +237,8 @@
  ┃ ┣ 📜index.js
  ┃ ┗ 📜secretKey.js
  ┣ 📂controllers
- ┃ ┣ 📜itemController.js
- ┃ ┣ 📜menuController.js
- ┃ ┣ 📜tagController.js
+ ┃ ┣ 📜gameController.js
+ ┃ ┣ 📜projectController.js
  ┃ ┗ 📜userController.js
  ┣ 📂globals
  ┃ ┣ 📜index.js
@@ -255,55 +247,54 @@
  ┃ ┗ 📜statusCode.js
  ┣ 📂libs
  ┃ ┣ 📜encryption.js
- ┃ ┗ 📜jwt.js
+ ┃ ┣ 📜jwt.js
+ ┃ ┗ 📜serverSocket.js
  ┣ 📂middlewares
  ┃ ┗ 📜auth.js
  ┣ 📂models
  ┃ ┣ 📜index.js
- ┃ ┣ 📜item.js
- ┃ ┣ 📜menu.js
- ┃ ┣ 📜tag.js
- ┃ ┗ 📜user.js
+ ┃ ┣ 📜likeModel.js
+ ┃ ┣ 📜projectModel.js
+ ┃ ┣ 📜releaseModel.js
+ ┃ ┗ 📜userModel.js
+ ┣ 📂public
+ ┃ ┣ 📂js
+ ┃ ┃ ┗ 📜clientSocket.js
+ ┃ ┗ 📜gameEditor.html
  ┣ 📂routes
+ ┃ ┣ 📜gameRouter.js
  ┃ ┣ 📜globalRouter.js
  ┃ ┣ 📜index.js
- ┃ ┣ 📜menuRouter.js
- ┃ ┣ 📜tagRouter.js
+ ┃ ┣ 📜projectRouter.js
  ┃ ┣ 📜tokenRouter.js
  ┃ ┗ 📜userRouter.js
  ┣ 📂services
- ┃ ┣ 📜itemService.js
- ┃ ┣ 📜menuService.js
- ┃ ┣ 📜tagService.js
+ ┃ ┣ 📜gameService.js
+ ┃ ┣ 📜projectService.js
  ┃ ┗ 📜userService.js
  ┣ 📂test
- ┃ ┣ 📂Menu
- ┃ ┃ ┣ 📜createMenu.test.js
- ┃ ┃ ┣ 📜deleteMenu.test.js
- ┃ ┃ ┣ 📜getMenu.test.js
- ┃ ┃ ┣ 📜getMenuList.test.js
- ┃ ┃ ┗ 📜putMenu.test.js
- ┃ ┣ 📂Tag
- ┃ ┃ ┣ 📜deleteTag.test.js
- ┃ ┃ ┣ 📜getTag.test.js
- ┃ ┃ ┣ 📜postTag.test.js
- ┃ ┃ ┗ 📜putTag.test.js
- ┃ ┗ 📂User
- ┃ ┃ ┣ 📜signin.test.js
+ ┃ ┣ 📂Token
+ ┃ ┃ ┗ 📜postToken.test.js
+ ┃ ┣ 📂User
  ┃ ┃ ┗ 📜signup.test.js
+ ┃ ┗ 📜Socket.test.js
  ┣ 📂utils
+ ┃ ┣ 📂db
+ ┃ ┃ ┗ 📜index.js
  ┃ ┣ 📂errors
+ ┃ ┃ ┣ 📜commonError.js
  ┃ ┃ ┣ 📜errors.js
- ┃ ┃ ┣ 📜menuError.js
- ┃ ┃ ┣ 📜tagError.js
+ ┃ ┃ ┣ 📜gameError.js
  ┃ ┃ ┗ 📜userError.js
  ┃ ┣ 📜index.js
  ┃ ┣ 📜logger.js
  ┃ ┗ 📜resFormatter.js
+ ┣ 📜.env
  ┣ 📜.eslintrc.json
  ┣ 📜.gitignore
  ┣ 📜.prettierrc.json
  ┣ 📜app.js
+ ┣ 📜package-lock.json
  ┗ 📜package.json
 
 ```
