@@ -10,9 +10,7 @@ module.exports = {
     //토큰 생성
     sign: async user => {
         const payload = {
-            "domain": user.domain,
-            "username": user.username,
-            "isAdmin": user.isAdmin
+            username : user.username,
         };
 
         const result = {
