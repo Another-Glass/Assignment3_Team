@@ -127,6 +127,10 @@ exports.deleteMyProject = async (req, res, next) => {
         // TODO projectService를 이용하여 프로젝트 정보 삭제
         const dbResolve = await deleteProject(projectId)
 
+        if(dbResolve.authorId != req.decoded._id){
+            throw new UnAuthorizedError()
+        }
+
         const responseData = {}
 
         return res
