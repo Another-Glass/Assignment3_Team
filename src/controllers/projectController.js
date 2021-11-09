@@ -1,6 +1,7 @@
 const { statusCode, responseMessage } = require('../globals');
 const { resFormatter } = require('../utils');
 const { ValidationError } = require('../utils/errors/userError');
+const { UnAuthorizedError } = require('../utils/errors/gameError');
 const { createProject, getProjectList, getProject, deleteProject } = require('../services/projectService');
 
 
@@ -79,6 +80,10 @@ exports.getMyProjectDetail = async (req, res, next) => {
 
         // TODO projectService를 이용하여 렌더링에 포함할 정보 입력
         const dbResolve = await getProject(projectId)
+
+        if(dbResolve.authorId != req.decoded._id){
+            throw new UnAuthorizedError()
+        }
 
         const responseData = {
             projectId: dbResolve._id,
