@@ -27,8 +27,13 @@ exports.createProject = async data => {
  */
 exports.getProjectList = async authorId => {
   try {
-    const projectList = await projectModel.find({ authorId });
-    return projectList;
+    if (mongoose.isValidObjectId(authorId)) {
+      const projectList = await projectModel.find({ authorId });
+      return projectList;
+    }
+    else {
+      return null
+    }
   } catch (err) {
     throw err;
   }
@@ -40,9 +45,16 @@ exports.getProjectList = async authorId => {
  * @returns {Object} 프로젝트 조회 정보 { projectId, authorId, projectName, projectData, releaseId }
  */
 exports.getProject = async projectId => {
+
   try {
-    const project = await projectModel.findOne({ _id: projectId });
-    return project;
+    if (mongoose.isValidObjectId(projectId)) {
+      const project = await projectModel.findOne({ _id: projectId });
+      return project;
+    } else {
+      return null
+    }
+
+
   } catch (err) {
     throw err;
   }
@@ -63,16 +75,21 @@ exports.getProject = async projectId => {
  */
 exports.updateProject = async (projectId, projectName, projectData) => {
   try {
-    let project = await projectModel.findOneAndUpdate({
-      projectId
-    }, {
-      projectData,
-      projectName
-    }, {
-      new: true
-    })
-    const newProject = await projectModel.findOne({ _id: projectId });
-    return newProject;
+
+    if (mongoose.isValidObjectId(projectId)) {
+      let project = await projectModel.findOneAndUpdate({
+        projectId
+      }, {
+        projectData,
+        projectName
+      }, {
+        new: true
+      })
+      const newProject = await projectModel.findOne({ _id: projectId });
+      return newProject;
+    } else {
+      return null
+    }
   } catch (err) {
     throw err;
   }
@@ -88,8 +105,14 @@ exports.updateProject = async (projectId, projectName, projectData) => {
 exports.deleteProject = async projectId => {
   try {
     console.log(projectId);
-    const project = await projectModel.deleteOne({ _id: projectId });
-    
+
+    if (mongoose.isValidObjectId(projectId)) {
+      const project = await projectModel.deleteOne({ _id: projectId });
+      return project
+    } else {
+      return null
+    }
+
   } catch (err) {
     throw err;
   }

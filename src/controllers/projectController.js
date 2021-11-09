@@ -2,6 +2,7 @@ const { statusCode, responseMessage } = require('../globals');
 const { resFormatter } = require('../utils');
 const { ValidationError } = require('../utils/errors/userError');
 const { UnAuthorizedError } = require('../utils/errors/gameError');
+const { EntityNotExistError } = require('../utils/errors/commonError');
 const { createProject, getProjectList, getProject, deleteProject } = require('../services/projectService');
 
 
@@ -52,6 +53,9 @@ exports.getMyProjectList = async (req, res, next) => {
         // TODO projectService를 이용하여 새로 생성 및 responseData에 삽입
         const dbResolve = await getProjectList(req.decoded._id)
 
+        if(dbResolve == null || dbResolve == undefined){
+            throw new EntityNotExistError()
+        }
         // TODO projectService를 이용하여 새로 생성 및 responseData에 삽입
         const responseData = dbResolve
 
@@ -80,6 +84,10 @@ exports.getMyProjectDetail = async (req, res, next) => {
 
         // TODO projectService를 이용하여 렌더링에 포함할 정보 입력
         const dbResolve = await getProject(projectId)
+
+        if(dbResolve == null || dbResolve == undefined){
+            throw new EntityNotExistError()
+        }
 
         if(dbResolve.authorId != req.decoded._id){
             throw new UnAuthorizedError()
@@ -126,6 +134,10 @@ exports.deleteMyProject = async (req, res, next) => {
 
         // TODO projectService를 이용하여 프로젝트 정보 삭제
         const dbResolve = await deleteProject(projectId)
+
+        if(dbResolve == null || dbResolve == undefined){
+            throw new EntityNotExistError()
+        }
 
         if(dbResolve.authorId != req.decoded._id){
             throw new UnAuthorizedError()
