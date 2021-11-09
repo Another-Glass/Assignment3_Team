@@ -165,6 +165,10 @@
 - npm start를 통해 서버를 구동합니다.
 - src 폴더에 .env 파일을 설정해서, 환경변수를 설정합니다.
 - npm start로 서버를 구동시키고, npm test를 입력하면 단위 테스트가 가능합니다.
+- 게임 제작의 경우 로그인 페이지에서 로그인 진행 후에 브라우저에 토큰이 등록된 후 게임제작 페이지에서 테스트 가능합니다.
+  - 로그인 페이지 get http://host/user/token
+  - 게임제작 페이지 get http://{{host}}/projects/my/{{projectId}}?username={{username}}  (쿠키 필요)
+
 
 - <details><summary><b>.env 파일 설정 방법</b></summary>
 
