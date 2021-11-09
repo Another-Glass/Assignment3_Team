@@ -1,20 +1,17 @@
 const { statusCode, responseMessage } = require('../globals');
-const encryption = require('../libs/encryption.js');
-const jwt = require('../libs/jwt.js');
 const { resFormatter } = require('../utils');
-const { ValidationError, DuplicatedError, PasswordMissMatchError, NotMatchedUserError } = require('../utils/errors/userError');
+const { ValidationError } = require('../utils/errors/userError');
 
-const userService = require('../services/userService.js');
-const logger = require('../utils/logger');
+const FILE_PATH = "../public/gameEditor.html"
 
 
 exports.createProject = async (req, res, next) => {
     try {
-        const { email, projectName } = req.body
-        const username = req.decoded.username
+        const { username, projectName } = req.body
+        const verified = req.decoded.username
 
         //email, projectName이 누락되었거나 email과 jwt의 mismatch
-        if (email === undefined || projectName === undefined || email != username) {
+        if (username === undefined || projectName === undefined || username != verified) {
             throw new ValidationError();
         }
 
@@ -34,7 +31,12 @@ exports.createProject = async (req, res, next) => {
 
 exports.getMyProjectList = async (req, res, next) => {
     try {
-        const noParameter = req.body
+        const { username } = req.query
+        const { verified } = req.decoded
+
+        if (username === undefined || username != verified) {
+            throw new ValidationError();
+        }
 
         // TODO projectService를 이용하여 새로 생성 및 responseData에 삽입
         const responseData = [
@@ -61,8 +63,12 @@ exports.getMyProjectList = async (req, res, next) => {
 exports.getMyProjectDetail = async (req, res, next) => {
     try {
         const { projectId } = req.params
-        const username = req.decoded.username
+        const { username } = req.query
+        const { verified } = req.decoded
 
+        if (username === undefined || username != verified) {
+            throw new ValidationError();
+        }
         if (isNaN(projectId)) {
             throw new ValidationError();
         }
@@ -86,7 +92,12 @@ exports.getMyProjectDetail = async (req, res, next) => {
 exports.deleteMyProject = async (req, res, next) => {
     try {
         const { projectId } = req.params
-        const username = req.decoded.username
+        const { username } = req.query
+        const { verified } = req.decoded
+
+        if (username === undefined || username != verified) {
+            throw new ValidationError();
+        }
         if (isNaN(projectId)) {
             throw new ValidationError();
         }
