@@ -33,4 +33,11 @@ module.exports = {
   LOGOUT_SUCCESS: '로그아웃 성공',
   NO_USER: '존재하지 않는 회원입니다.',
   MISS_MATCH_PW: '비밀번호가 맞지 않습니다.',
+
+
+  //프로젝트
+  PROJECT_CREATED: '프로젝트 생성 성공',
+  PROJECT_MY_LIST: '내 프로젝트 목록',
+  PROJECT_DELETED: '프로젝트 삭제 성공'
+
 };
