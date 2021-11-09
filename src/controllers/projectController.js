@@ -126,22 +126,16 @@ exports.deleteMyProject = async (req, res, next) => {
         }
 
         const isExists = await getProject(projectId)
-        console.log("isExists ",isExists)
-
-        if(!isExists){
+         if(!isExists){
             throw new ValidationError()
+        }
+        
+        if(isExists.authorId != req.decoded._id){
+            throw new UnAuthorizedError()
         }
 
         // TODO projectService를 이용하여 프로젝트 정보 삭제
-        const dbResolve = await deleteProject(projectId)
-
-        if(dbResolve == null || dbResolve == undefined){
-            throw new EntityNotExistError()
-        }
-
-        if(dbResolve.authorId != req.decoded._id){
-            throw new UnAuthorizedError()
-        }
+        await deleteProject(projectId)
 
         const responseData = {}
 
